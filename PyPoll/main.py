@@ -17,6 +17,7 @@ with open(file, 'r', encoding='utf', newline='') as csvfile:
     candidates = []
     data = []
     vote_counter = []
+    vote_percent = []
     
     #Establish a counter for the number of votes cast
     vote_total = 0
@@ -38,14 +39,26 @@ with open(file, 'r', encoding='utf', newline='') as csvfile:
         if name not in candidates:
             candidates.append(name)
     
-    print(candidates)
-    
     for name in candidates:
         candidate_count = data.count(name)
         vote_counter.append(candidate_count)
-        
-    print(vote_counter)
-        
- 
+
+    #Create a percentage value for each vote counter value
+    for vote in vote_counter:
+        percentage = "{:.3%}".format(vote/vote_total)
+        vote_percent.append(percentage)
+    
+    #Zip lists so that candidates are next to their own vote count
+    candidates_zip = zip(candidates, vote_counter, vote_percent)
+    
+#create the output text file
+output_path = "E:/Downloads/python-challenge/PyPoll/Analysis/poll_results.csv"
+
+# Open the file using "write" mode.
+with open(output_path, 'w', newline='') as csvfile:
+
+    csvwriter = csv.writer(csvfile)
+    csvwriter.writerow(["Candidate","Vote Count","Percentage"])
+    csvwriter.writerows(candidates_zip)
     
     

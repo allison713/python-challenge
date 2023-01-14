@@ -34,11 +34,11 @@ In this challenge, you are tasked with helping a small, rural town modernize its
 
 You will be given a set of poll data called [election_data.csv](PyPoll/Resources/election_data.csv). The dataset is composed of three columns: "Voter ID", "County", and "Candidate". Your task is to create a Python script that analyzes the votes and calculates each of the following:
 
-* The total number of votes cast
+* The total number of votes cast (vote_total)
 
-* A complete list of candidates who received votes
+* A complete list of candidates who received votes (candidates)
 
-* The percentage of votes each candidate won
+* The percentage of votes each candidate won 
 
 * The total number of votes each candidate won
 
