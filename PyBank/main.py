@@ -58,20 +58,22 @@ with open(file, 'r', encoding='utf', newline='') as csvfile:
     #find the average of the changes in profit/losses
     avg_profit_changes = round(int(total_difference)/(int(month_counter)-1), 2)
 
-print("Financial Analysis")
-print("---------------------------------------------")
-print(f"Total Months: {month_counter}")
-print(f"Total: ${net_total_profit}")
-print(f"Average Change: ${avg_profit_changes}")
-print(f"Greatest Increase in Profits: {date_max} (${max_profit})")
-print(f"Greatest Decrease in Profits: {date_min} (${min_profit})")
+#create the text to save and print in terminal
+summary = ["Financial Analysis", "---------------------------------------------", f"Total Months: {month_counter}", 
+           f"Total: ${net_total_profit}", f"Average Change: ${avg_profit_changes}", f"Greatest Increase in Profits: {date_max} (${max_profit})",
+           f"Greatest Decrease in Profits: {date_min} (${min_profit})"]
 
+#print the summary in the terminal
+for item in summary:
+    print(item)
+
+#create the output text file
 output_path = "E:/Downloads/python-challenge/PyBank/Analysis/budget_data_results.txt"
 
-# Open the file using "write" mode. Specify the variable to hold the contents
+# Open the file using "write" mode.
 with open(output_path, 'w') as output_file:
 
     #Writing the rows of text into text file
-    output_file.write("Financial Analysis")
-    output_file.write('\n')
-    output_file.write("---------------------------------------------")
+    for item in summary:
+        output_file.write(item)
+        output_file.write('\n')
