@@ -21,7 +21,13 @@ with open(file, 'r', encoding='utf', newline='') as csvfile:
     
     #Establish the variable for total changes in profit
     total_difference = 0
+    
+    #use a second variable to find the difference between just two rows at a time.
     difference = 0
+    
+    #Establish a variable for extreme profits
+    max_profit = 0
+    min_profit = 0
     
     #Create a loop to count the rows except for the headers
     for row in csvreader:
@@ -36,9 +42,36 @@ with open(file, 'r', encoding='utf', newline='') as csvfile:
             difference = int(row[1]) - start
             total_difference += difference
             
+        #Set max profit value
+        if difference > max_profit:
+            max_profit = difference
+            date_max = row[0]
+        
+        #Set min profit value
+        if difference < min_profit:
+            min_profit = difference
+            date_min = row[0]
+            
         #Set the beginning profit/loss:
         start = int(row[1])
-        
-            
-print(total_difference)
-        
+    
+    #find the average of the changes in profit/losses
+    avg_profit_changes = round(int(total_difference)/(int(month_counter)-1), 2)
+
+print("Financial Analysis")
+print("---------------------------------------------")
+print(f"Total Months: {month_counter}")
+print(f"Total: ${net_total_profit}")
+print(f"Average Change: ${avg_profit_changes}")
+print(f"Greatest Increase in Profits: {date_max} (${max_profit})")
+print(f"Greatest Decrease in Profits: {date_min} (${min_profit})")
+
+output_path = "E:/Downloads/python-challenge/PyBank/Analysis/budget_data_results.txt"
+
+# Open the file using "write" mode. Specify the variable to hold the contents
+with open(output_path, 'w') as output_file:
+
+    #Writing the rows of text into text file
+    output_file.write("Financial Analysis")
+    output_file.write('\n')
+    output_file.write("---------------------------------------------")
