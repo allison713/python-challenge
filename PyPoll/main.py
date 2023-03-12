@@ -2,7 +2,7 @@
 import csv
 
 #Identify file path
-file = "E:/Downloads/python-challenge/PyPoll/Resources/election_data.csv"
+file = "PyPoll/Resources/election_data.csv"
 
 #open file as csvfile
 with open(file, 'r', encoding='utf', newline='') as csvfile:
@@ -15,7 +15,11 @@ with open(file, 'r', encoding='utf', newline='') as csvfile:
     
     #Create a list of candidates. As we find a new candidate in the list, their name will be appended here.
     candidates = []
+
+    #
     data = []
+
+    #Vote counter per candidate.
     vote_counter = []
     vote_percent = []
     
@@ -51,8 +55,22 @@ with open(file, 'r', encoding='utf', newline='') as csvfile:
     #Zip lists so that candidates are next to their own vote count
     candidates_zip = zip(candidates, vote_counter, vote_percent)
     
+#create the text to save and print in terminal
+summary = ["Election Results", "---------------------------------------------", 
+           f"Total Votes: {vote_total}", "---------------------------------------------",
+           f"{candidates[0]}: {vote_percent[0]}, ({vote_counter[0]})",
+           f"{candidates[1]}: {vote_percent[1]}, ({vote_counter[1]})",
+           f"{candidates[2]}: {vote_percent[2]}, ({vote_counter[2]})",
+           "---------------------------------------------",
+           f"Winner: {candidates[1]}"
+           ]
+
+#print the summary in the terminal
+for item in summary:
+    print(item)
+
 #create the output text file
-output_path = "E:/Downloads/python-challenge/PyPoll/Analysis/poll_results.csv"
+output_path = "PyPoll/Analysis/poll_results.csv"
 
 # Open the file using "write" mode.
 with open(output_path, 'w', newline='') as csvfile:
