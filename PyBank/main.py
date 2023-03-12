@@ -2,7 +2,7 @@
 import csv
 
 #Identify file path
-file = "E:/Downloads/python-challenge/PyBank/Resources/budget_data.csv"
+file = "PyBank/Resources/budget_data.csv"
 
 #open file as csvfile
 with open(file, 'r', encoding='utf', newline='') as csvfile:
@@ -68,7 +68,7 @@ for item in summary:
     print(item)
 
 #create the output text file
-output_path = "E:/Downloads/python-challenge/PyBank/Analysis/budget_data_results.txt"
+output_path = "PyBank/Analysis/budget_data_results2.txt"
 
 # Open the file using "write" mode.
 with open(output_path, 'w') as output_file:
